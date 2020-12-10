@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "33f8d9f8-c618-4bfa-b22d-7f723bbccf68",
+		"name": "UiBank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a new account of type \"savings\" in UIBank",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9589762-f847-4a57-96eb-9e2821a32524",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "XtyM7CuLvtBQ1lQxSgXAzRmFUYStZFt0XIMDC8HREEQwKp7zolcdMNtfnpADxJB3"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"friendlyName\":\"karthikeyan\",\"type\":\"savings\",\"userId\":\"5fd0e260277e35002d76010d\",\"balance\":100,\"accountNumber\":40525164}"
+				},
+				"url": {
+					"raw": "{{uibank}}/api/accounts",
+					"host": [
+						"{{uibank}}"
+					],
+					"path": [
+						"api",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Use that account number to apply a for loan with current yearly income and loan term",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74c10201-27bf-4626-b8ef-b683db8fc73f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"karthikchidambaram86@gmail.com\",\"amount\":100000,\"term\":3,\"income\":400000,\"age\":26}"
+				},
+				"url": {
+					"raw": "{{uibank}}/api/quotes/newquote",
+					"host": [
+						"{{uibank}}"
+					],
+					"path": [
+						"api",
+						"quotes",
+						"newquote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify the loan status with loan ID on the previous step success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98fcb636-a773-4d68-8fc5-b796cb8b0377",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+					}
+				],
+				"url": {
+					"raw": "{{uibank}}/api/quotes/5fd0ea9f277e35002d760119",
+					"host": [
+						"{{uibank}}"
+					],
+					"path": [
+						"api",
+						"quotes",
+						"5fd0ea9f277e35002d760119"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer money between any two accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0ec58ab-8dce-4b26-87b9-6459f9d2d9af",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "XtyM7CuLvtBQ1lQxSgXAzRmFUYStZFt0XIMDC8HREEQwKp7zolcdMNtfnpADxJB3"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"type\":\"transfer\",\"dispute\":\"ok\",\"ref\":\"\",\"description\":\"transfer was made for demo purposes\",\"amount\":3000,\"TransfertoAccountId\":\"5fd0e882277e35002d760112\",\"balance\":-2900,\"accountId\":\"5fd0e920277e35002d760113\"}"
+				},
+				"url": {
+					"raw": "{{uibank}}/api/transactions",
+					"host": [
+						"{{uibank}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
